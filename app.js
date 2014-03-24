@@ -8,6 +8,7 @@ app.configure(function() {
     app.engine('html', require('ejs').renderFile);
 
     app.use(express.bodyParser());
+    app.use(express.static(__dirname + '/public'));
 });
 
 app.get('/', function(req, res) {
