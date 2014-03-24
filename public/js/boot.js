@@ -1,3 +1,3 @@
 $(function() {
-    new app.chat();
+    new app.chat('#chat');
 });
