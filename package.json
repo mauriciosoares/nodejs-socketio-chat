@@ -1,0 +1,16 @@
+{
+  "name": "socketio",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "express": "~3.5.0",
+    "socket.io": "~0.9.16",
+    "ejs": "~1.0.0"
+  }
+}
