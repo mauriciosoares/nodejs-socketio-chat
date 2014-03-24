@@ -13,6 +13,8 @@ var app = app || {};
 
         this.socket = io.connect(url);
         this.socket.on('connect', this.onSocketConnect.bind(this));
+
+        this.chatInput = new app.chatInput(this.context.find('#chat-input'));
     };
 
     app.chat.prototype.onSocketConnect = function() {
