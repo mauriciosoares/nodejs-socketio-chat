@@ -9,8 +9,13 @@ var app = app || {};
 
     app.chat.prototype.initialize = function(id) {
         this.context = $(id);
+        this.sessionId = null;
 
-        console.log(this.context);
         this.socket = io.connect(url);
+        this.socket.on('connect', this.onSocketConnect.bind(this));
+    };
+
+    app.chat.prototype.onSocketConnect = function() {
+        console.log(this.socket.socket.sessionid);
     };
 } ());
