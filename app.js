@@ -1,3 +1,6 @@
+// Guide reference for some things
+// https://github.com/wmora/nodejs-express-socketio-chatroom/blob/master/server.js
+
 var express = require('express'),
     app = express(),
     server = require('http').createServer(app),
