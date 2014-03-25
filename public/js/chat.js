@@ -12,11 +12,16 @@ var app = app || {};
   app.chat.prototype.initialize = function(id) {
     this.context = $(id);
 
-    this.socketInstance = new app.socketIo();
+    this.socket = new app.socketIo();
+    this.socket.on('newMessage', this.addNewMessage.bind(this));
 
     // gets chat input and binds the enter event
     this.chatInput = new app.chatInput(this.context.find('#chat-input'));
     this.chatInput.on('enter', this.onChatEnter.bind(this));
+  };
+
+  app.chat.prototype.addNewMessage = function(event, text) {
+    console.log(text);
   };
 
   app.chat.prototype.onChatEnter = function(event, text) {

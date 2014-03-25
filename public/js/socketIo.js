@@ -11,6 +11,10 @@ var app = app || {};
 
   app.socketIo.prototype.initialize = function() {
     this.socket = io.connect(URL);
+
+    this.emitter = $({});
+    this.on = this.emitter.on.bind(this.emitter);
+
     this.addSocketListeners();
   };
 
@@ -31,7 +35,8 @@ var app = app || {};
   };
 
   app.socketIo.prototype.onSocketMessage = function(data) {
-    new app.chatMessage(data.message).render();
+    this.emitter.trigger('newMessage', data.message);
+    // new app.chatMessage(data.message).render();
   };
 
   app.socketIo.prototype.onSocketNewConnection = function(data) {
