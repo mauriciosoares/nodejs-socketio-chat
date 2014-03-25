@@ -1,23 +1,25 @@
 var app = app || {};
 
 (function() {
-    var url = location.protocol + '//' + location.hostname + ':' + location.port;
+  'use strict';
 
-    app.chat = function(id) {
-        this.initialize(id);
-    };
+  var url = location.protocol + '//' + location.hostname + ':' + location.port;
 
-    app.chat.prototype.initialize = function(id) {
-        this.context = $(id);
-        this.sessionId = null;
+  app.chat = function(id) {
+    this.initialize(id);
+  };
 
-        this.socket = io.connect(url);
-        this.socket.on('connect', this.onSocketConnect.bind(this));
+  app.chat.prototype.initialize = function(id) {
+    this.context = $(id);
+    this.sessionId = null;
 
-        this.chatInput = new app.chatInput(this.context.find('#chat-input'));
-    };
+    this.socket = io.connect(url);
+    this.socket.on('connect', this.onSocketConnect.bind(this));
 
-    app.chat.prototype.onSocketConnect = function() {
-        console.log(this.socket.socket.sessionid);
-    };
+    this.chatInput = new app.chatInput(this.context.find('#chat-input'));
+  };
+
+  app.chat.prototype.onSocketConnect = function() {
+    console.log(this.socket.socket.sessionid);
+  };
 } ());

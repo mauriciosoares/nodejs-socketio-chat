@@ -1,3 +1,5 @@
 $(function() {
-    new app.chat('#chat');
+  'use strict';
+
+  new app.chat('#chat');
 });
