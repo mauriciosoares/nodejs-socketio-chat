@@ -4,7 +4,8 @@
 var express = require('express'),
   app = express(),
   server = require('http').createServer(app),
-  io = require('socket.io').listen(server);
+  io = require('socket.io').listen(server),
+  users = [];
 
 app.configure(function() {
   app.set('views', __dirname + '/views');
@@ -25,10 +26,22 @@ app.post('/message', function(req, res) {
   });
 });
 
-io.on('connected', function(socket) {
-  // socket.on('teste', function(data) {
-  //   console.log(data);
-  // });
+io.on('connection', function(socket) {
+  socket.on('newUser', function(data) {
+    users.push({
+      id: data,
+      name: ''
+    });
+
+    io.sockets.emit('newConnection', {
+      users: users
+    });
+  });
+
+  socket.on('disconnect', function() {
+    users.pop();
+  })
+
 });
 
 server.listen(3333);

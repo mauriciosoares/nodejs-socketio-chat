@@ -17,13 +17,24 @@ var app = app || {};
   app.socketIo.prototype.addSocketListeners = function() {
     this.socket.on('connect', this.onSocketConnect.bind(this));
     this.socket.on('incomingMessage', this.onSocketMessage.bind(this));
+    this.socket.on('newConnection', this.onSocketNewConnection.bind(this));
   };
 
   app.socketIo.prototype.onSocketConnect = function() {
     this.sessionId = this.socket.socket.sessionid;
+
+    console.log('Connected: ' + this.sessionId);
+
+    this.socket.emit('newUser', {
+      id: this.sessionId
+    });
   };
 
   app.socketIo.prototype.onSocketMessage = function(data) {
+    console.log(data);
+  };
+
+  app.socketIo.prototype.onSocketNewConnection = function(data) {
     console.log(data);
   };
 } ());
