@@ -31,10 +31,10 @@ var app = app || {};
   };
 
   app.socketIo.prototype.onSocketMessage = function(data) {
-    console.log(data);
+    new app.chatMessage(data.message).render();
   };
 
   app.socketIo.prototype.onSocketNewConnection = function(data) {
-    console.log(data);
+    // console.log(data);
   };
 } ());
