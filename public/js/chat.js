@@ -28,7 +28,7 @@ var app = app || {};
   };
 
   app.chat.prototype.onRefreshUsers = function(event, data) {
-    console.log(data);
+    this.users.render(data.users);
   };
 
   app.chat.prototype.onChatEnter = function(event, text) {

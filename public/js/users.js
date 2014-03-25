@@ -10,6 +10,12 @@ var app = app || {};
   app.users.prototype.initialize = function(content) {
     this.usersList = content;
 
-    console.log(this.usersList);
+    return this;
   }
+
+  app.users.prototype.render = function(users) {
+    $.each(users, function(i, e) {
+      console.log(e);
+    }.bind(this));
+  };
 } ());

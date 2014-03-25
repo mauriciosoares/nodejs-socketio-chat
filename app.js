@@ -29,7 +29,7 @@ app.post('/message', function(req, res) {
 io.on('connection', function(socket) {
   socket.on('newUser', function(data) {
     users.push({
-      id: data,
+      id: data.id,
       name: ''
     });
 
