@@ -33,13 +33,17 @@ io.on('connection', function(socket) {
       name: ''
     });
 
-    io.sockets.emit('newConnection', {
+    io.sockets.emit('refreshConnections', {
       users: users
     });
   });
 
   socket.on('disconnect', function() {
     users.pop();
+
+    io.sockets.emit('refreshConnections', {
+      users: users
+    });
   })
 
 });

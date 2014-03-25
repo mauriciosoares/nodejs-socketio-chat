@@ -21,7 +21,7 @@ var app = app || {};
   app.socketIo.prototype.addSocketListeners = function() {
     this.socket.on('connect', this.onSocketConnect.bind(this));
     this.socket.on('incomingMessage', this.onSocketMessage.bind(this));
-    this.socket.on('newConnection', this.onSocketNewConnection.bind(this));
+    this.socket.on('refreshConnections', this.onSocketConnections.bind(this));
   };
 
   app.socketIo.prototype.onSocketConnect = function() {
@@ -35,11 +35,10 @@ var app = app || {};
   };
 
   app.socketIo.prototype.onSocketMessage = function(data) {
-    this.emitter.trigger('newMessage', data.message);
-    // new app.chatMessage(data.message).render();
+    this.emitter.trigger('newMessage', data);
   };
 
-  app.socketIo.prototype.onSocketNewConnection = function(data) {
-    // console.log(data);
+  app.socketIo.prototype.onSocketConnections = function(data) {
+    this.emitter.trigger('refreshUsers', data);
   };
 } ());

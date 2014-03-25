@@ -1,12 +1,15 @@
 var app = app || {};
 
 (function() {
-  app.chatMessage = function(text) {
-    this.initialize(text);
+  'use strict';
+
+  app.chatMessage = function(text, content) {
+    this.initialize(text, content);
   };
 
-  app.chatMessage.prototype.initialize = function(text) {
-    this.el = $('<span>');
+  app.chatMessage.prototype.initialize = function(text, content) {
+    this.chatList = content.find('.chat-list');
+    this.el = $('<div>');
     this.text = text;
 
     return this;
@@ -14,6 +17,6 @@ var app = app || {};
 
   app.chatMessage.prototype.render = function() {
     this.el.html(this.text);
-    console.log(this.el.html());
+    this.chatList.append(this.el)
   };
 } ());
