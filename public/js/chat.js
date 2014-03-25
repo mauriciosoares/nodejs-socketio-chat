@@ -16,10 +16,16 @@ var app = app || {};
     this.socket = io.connect(url);
     this.socket.on('connect', this.onSocketConnect.bind(this));
 
+    // gets chat input and binds the enter event
     this.chatInput = new app.chatInput(this.context.find('#chat-input'));
+    this.chatInput.on('enter', this.onChatEnter.bind(this));
   };
 
   app.chat.prototype.onSocketConnect = function() {
-    console.log(this.socket.socket.sessionid);
+    this.sessionId = this.socket.socket.sessionid;
   };
+
+  app.chat.prototype.onChatEnter = function(event, text) {
+    console.log(text);
+  }
 } ());
