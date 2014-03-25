@@ -18,4 +18,17 @@ app.get('/', function(req, res) {
   res.render('index.ejs');
 });
 
+app.post('/message', function(req, res) {
+  io.sockets.emit('incomingMessage', {
+    message: req.body.text,
+    user: req.body.id
+  });
+});
+
+io.on('connected', function(socket) {
+  // socket.on('teste', function(data) {
+  //   console.log(data);
+  // });
+});
+
 server.listen(3333);
