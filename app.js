@@ -30,7 +30,7 @@ io.on('connection', function(socket) {
   socket.on('newUser', function(data) {
     users.push({
       id: data.id,
-      name: ''
+      name: data.id
     });
 
     io.sockets.emit('refreshConnections', {

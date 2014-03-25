@@ -14,8 +14,10 @@ var app = app || {};
   }
 
   app.users.prototype.render = function(users) {
+    this.usersList.html('');
+
     $.each(users, function(i, e) {
-      console.log(e);
+      this.usersList.append('<div>' + e.name + '</div>');
     }.bind(this));
   };
 } ());
